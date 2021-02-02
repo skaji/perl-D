@@ -9,7 +9,8 @@ use Data::Dumper ();
 use JSON::PP ();
 
 use Exporter 'import';
-our @EXPORT = qw(d $JSON);
+our @EXPORT = qw(d $JSON_ $_JSON);
+our @EXPORT_OK = (@EXPORT, '$JSON');
 
 sub d {
     local $| = 1;
@@ -27,7 +28,7 @@ sub d {
     ;
 }
 
-our $JSON = JSON::PP
+our $JSON = our $JSON_ = our $_JSON = JSON::PP
     ->new
     ->utf8
     ->pretty
